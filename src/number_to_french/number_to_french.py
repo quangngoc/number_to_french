@@ -1,7 +1,6 @@
 from typing import Iterator
 
 french_words = [
-    "zéro",
     "un",
     "deux",
     "trois",
@@ -24,7 +23,7 @@ french_words = [
     "cinquante",
     "soixante",
 ]
-numbers = list(range(17)) + [20, 30, 40, 50, 60]
+numbers = list(range(1, 17)) + [20, 30, 40, 50, 60]
 number_to_french_dict = {number: word for number, word in zip(numbers, french_words)}
 
 
@@ -34,21 +33,19 @@ def less_than_20_to_french(tens: int, remainder: int) -> Iterator[str]:
         # Won't handle the case where number > 19
         return
     elif tens == 1 and remainder > 6:
-        # Numbers in [10, 17, 18, 19].
-        yield "dix"
-        if remainder > 0:
-            yield number_to_french_dict[remainder]
+        # Numbers in [17, 18, 19].
+        yield from ["dix", number_to_french_dict[remainder]]
     elif tens != 0 or remainder != 0:
-        # Numbers between 1 and 9.
+        # Numbers between 1 and 10.
         yield number_to_french_dict[tens * 10 + remainder]
 
 
 def number_to_french(number: int) -> Iterator[str]:
     """Convert a number to French."""
     if number >= 10**6:
-        raise ValueError("Number too large")
+        raise ValueError("Number is too big")
     if number == 0:
-        yield number_to_french_dict[number]
+        yield "zéro"
         return
 
     # Handle thousands.

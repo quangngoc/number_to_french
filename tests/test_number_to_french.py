@@ -16,6 +16,7 @@ numbers_in_french = {
     51: "cinquante-et-un",
     68: "soixante-huit",
     70: "soixante-dix",
+    71: "soixante-et-onze",
     75: "soixante-quinze",
     99: "quatre-vingt-dix-neuf",
     100: "cent",
@@ -78,5 +79,5 @@ def test_number_to_french_less_than_million(number: int):
 
 @pytest.mark.parametrize("number", [1000000, 1000001])
 def test_number_to_french_greater_than_million(number: int):
-    with pytest.raises(ValueError, match="Number too large"):
+    with pytest.raises(ValueError, match="Number is too big"):
         _ = list(number_to_french(number))
