@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=70.0", "setuptools-scm>=8.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "number_to_french"
+version = "0.0.1"
+dependencies = []
+requires-python = ">=3.9"
+authors = [
+  { name="Quang Ngoc DUONG", email="quangngoc88@gmail.com" },
+]
+description = "Number to french converter"
+readme = "Readme.md"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
