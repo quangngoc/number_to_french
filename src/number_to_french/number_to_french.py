@@ -1,4 +1,5 @@
 from typing import Iterator
+import argparse
 
 french_words = [
     "un",
@@ -75,7 +76,7 @@ def number_to_french(number: int) -> Iterator[str]:
     # Handle less than 100.
     (tens, remainder) = divmod(remainder, 10)
     if tens > 7:
-        yield "quatre-vingt"
+        yield "quatre-vingts" if tens == 8 and remainder == 0 else "quatre-vingt"
         yield from less_than_20_to_french(tens - 8, remainder)
     elif tens > 5:
         yield "soixante"
@@ -90,3 +91,23 @@ def number_to_french(number: int) -> Iterator[str]:
             yield number_to_french_dict[remainder]
     else:
         yield from less_than_20_to_french(tens, remainder)
+
+
+def number_to_french_text(number: int) -> str:
+    return "-".join(list(number_to_french(number)))
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Convert numbers to French words")
+    parser.add_argument(
+        "numbers", nargs="+", type=int, help="List of numbers to convert"
+    )
+    args = parser.parse_args()
+
+    french_numbers = [number_to_french_text(n) for n in args.numbers]
+    for num, french in zip(args.numbers, french_numbers):
+        print(f"{num}: {french}")
+
+
+if __name__ == "__main__":
+    main()

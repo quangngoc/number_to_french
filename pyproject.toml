@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "number_to_french"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = []
 requires-python = ">=3.9"
 authors = [
@@ -14,5 +14,9 @@ description = "Number to french converter"
 readme = "Readme.md"
 classifiers = [
   "Development Status :: 4 - Beta",
-  "Programming Language :: Python"
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.9",
 ]
+
+[project.scripts]
+number-to-french = "number_to_french.number_to_french:main"

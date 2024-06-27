@@ -1,5 +1,9 @@
 import pytest
-from number_to_french.number_to_french import less_than_20_to_french, number_to_french
+from number_to_french.number_to_french import (
+    less_than_20_to_french,
+    number_to_french,
+    number_to_french_text,
+)
 
 numbers_in_french = {
     0: "zéro",
@@ -18,6 +22,9 @@ numbers_in_french = {
     70: "soixante-dix",
     71: "soixante-et-onze",
     75: "soixante-quinze",
+    80: "quatre-vingts",
+    81: "quatre-vingt-un",
+    91: "quatre-vingt-onze",
     99: "quatre-vingt-dix-neuf",
     100: "cent",
     101: "cent-et-un",
@@ -70,11 +77,10 @@ def test_less_than_20_to_french(tens: int, remainder: int, expected_output: list
 
 @pytest.mark.parametrize("number", numbers_in_french.keys())
 def test_number_to_french_less_than_million(number: int):
-    result = list(number_to_french(number))
+    result = number_to_french_text(number)
 
     # Assert
-    words = [word for element in result for word in element.split("-")]
-    assert words == numbers_in_french[number].split("-")
+    assert result == numbers_in_french[number]
 
 
 @pytest.mark.parametrize("number", [1000000, 1000001])

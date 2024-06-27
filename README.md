@@ -4,14 +4,26 @@ Number can be hard to write in French.
 
 [https://fr.wikipedia.org/wiki/Nombres_en_français](https://fr.wikipedia.org/wiki/Nombres_en_fran%C3%A7ais)
 
-## Development
+## Setup
 
 ```bash
 py -3.9 -m venv .venv
 & ./.venv/Scripts/Activate.ps1
+```
+
+## Development
+
+```bash
 pip install build pytest pytest-cov pytest-sugar
 pytest ./tests --cov=src
 py -m build
+```
+
+## Run
+
+```bash
+pip install -e .
+number-to-french 42 71 192
 ```
 
 ## Tools used
